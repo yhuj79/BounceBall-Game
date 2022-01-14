@@ -2,30 +2,84 @@
     padding: 0;
     margin: 0;
 }
-body{
-    background-color:black;
+body {
+    background-color: black;
 }
-#title{
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+#title {
     text-align: center;
     color: white;
-    margin-top:150px; margin-bottom: 150px;
+    margin-top: 5.5%; margin-bottom: 5.5%;
+    font-size: 50px;
 }
 #gameCanvas {
     background: #eee;
     margin: 0 auto;
     display: block;
 }
-.game_msg {
+.infoGame {
     position: absolute;
-    left: 50%; top: 50%; transform: translate(-50%, -50%);
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.7);
     text-align: center;
     padding: 150px;
     font-size: 30px;
-    color: white;
     font-weight: bold;
+    color: white;
+}
+.game_msg {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 170px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
     display: none;
 }
 .game_msg.show {
+    display: block;
+}
+.firstGame {
+    position: absolute;
+    left: 50%;
+    top: 68%;
+    transform: translate(-50%, -50%);
+    padding: 20px 10px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.firstGame:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s;
+}
+.restartGame {
+    position: absolute;
+    left: 50%;
+    top: 68%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    display: none;
+    transition: all 0.3s;
+}
+.restartGame:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s;
+}
+.restartGame.show {
     display: block;
 }

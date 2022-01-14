@@ -5,15 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:description" content="Are you ready to play?">
+    <meta property="og:image" content="./image/ogimage.png">
+
     <link rel="stylesheet" href="./style.css">
 
-    <title>Break Out</title>
+    <title>BounceBall</title>
 
 </head>
 
 <body>
-    <h1 id="title">Break Out Game</h1>
+    <h1 id="title">Bounce Ball Game</h1>
+    <div class="infoGame">
+        공이 떨어지지 않게 해야 합니다.<br>
+        가능한 벽에 많이 맞추세요!<br>
+        어떤 것의 색상이 바뀌는 것은<br>변화를 경고하는 것입니다.<br>
+    </div>
     <div class="game_msg"></div>
+    <button type="button" class="firstGame">START</button>
+    <button type="button" class="restartGame"></button>
     <canvas id="gameCanvas" width="800" height="600"></canvas>
     <script src="./brick.js"></script>
 </body>

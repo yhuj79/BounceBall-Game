@@ -1,13 +1,15 @@
 var canvas = document.getElementById('gameCanvas');
 var ctx = canvas.getContext('2d');
 
-setInterval(draw, 7)
 var x = canvas.width / 2;
-var y = canvas.height - 30;
-var dx = 3;
-var dy = 3;
-var ballRadius = 10;
+var y = canvas.height - 38;
+var dx = 4.9;
+var dy = 4.9;
+var ballRadius = 18;
 
+var score = 0;
+var ballcolor = 'firebrick';
+var paddlecolor = 'royalblue'
 var paddleWidth = 100;
 var paddleHeight = 20;
 var paddleX = (canvas.width - paddleWidth) / 2;
@@ -20,6 +22,23 @@ document.addEventListener("mousemove", mouseMoveHandler, false);
 
 const gameMsg = document.querySelector('.game_msg');
 const SHOW = 'show';
+
+const firstGame = document.querySelector('.firstGame');
+const infoGame = document.querySelector('.infoGame');
+firstGame.addEventListener('click', firstStart);
+
+function firstStart(){
+    setInterval(draw, 5)
+    firstGame.style.display = "none";
+    infoGame.style.display = "none";
+}
+
+const restartGame = document.querySelector('.restartGame');
+restartGame.addEventListener('click', reStart);
+
+function reStart() {
+    document.location.reload();
+}
 
 function clearCanvas(context, canvas) {
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -49,12 +68,10 @@ function mouseMoveHandler(e) {
     }
 }
 
-var score = 0;
-
 function drawBall() {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-    ctx.fillStyle = 'tomato';
+    ctx.fillStyle = ballcolor;
     ctx.fill();
     ctx.closePath();
 }
@@ -75,11 +92,32 @@ function draw() {
         if (x > paddleX && x < paddleX + paddleWidth) {
             dy = -dy;
         } else if (y > canvas.height) {
-            gameMsg.innerHTML = "GAME OVER<br>Score : " + score;
+            gameMsg.innerHTML = "GAME OVER<br>SCORE : " + score;
             gameMsg.classList.add(SHOW);
-            
+            dx = 0; dy = 0;
+            restartGame.innerHTML = 'RELOAD';
+            restartGame.classList.add(SHOW);
         }
     }
+
+    setInterval(function(){
+        ballRadius = 10;
+    }, 15000);
+
+    setInterval(function(){
+        paddlecolor = 'darkblue';
+    }, 25000);
+
+    setInterval(function(){
+        paddleWidth = 50;
+    }, 30000);
+
+    setInterval(function(){
+        ballcolor = 'purple';
+    }, 55000);
+    setInterval(function(){
+        ballcolor = '#eee';
+    }, 60000);
 
     if (leftPressed && paddleX > 0) {
         paddleX -= 10;
@@ -94,13 +132,13 @@ function draw() {
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleWidth)
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = paddlecolor;
     ctx.fill();
     ctx.closePath;
 }
 
 function drawScore() {
-    ctx.font = '30px Arial'
+    ctx.font = 'bold 30px Arial'
     ctx.fillStyle = 'black'
-    ctx.fillText('Score : ' + score, 8, 30);
+    ctx.fillText('SCORE : ' + score, 8, 35);
 }
