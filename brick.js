@@ -3,9 +3,9 @@ var ctx = canvas.getContext('2d');
 
 var x = canvas.width / 2;
 var y = canvas.height - 38;
-var dx = 4.9;
-var dy = 4.9;
-var ballRadius = 18;
+var dx = 5;
+var dy = 5;
+var ballRadius = 16;
 
 var score = 0;
 var ballcolor = 'firebrick';
@@ -120,9 +120,9 @@ function draw() {
     }, 60000);
 
     if (leftPressed && paddleX > 0) {
-        paddleX -= 10;
+        paddleX -= 5;
     } else if (rightPressed && paddleX < canvas.width - paddleWidth) {
-        paddleX += 10;
+        paddleX += 5;
     }
 
     x += dx;
