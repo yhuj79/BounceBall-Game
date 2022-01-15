@@ -10,7 +10,11 @@ var ballRadius = 16;
 var score = 0;
 var ballcolor = 'firebrick';
 var paddlecolor = 'royalblue'
+<<<<<<< HEAD
 var paddleWidth = 130;
+=======
+var paddleWidth = 120;
+>>>>>>> 8a3b3789a0bf5ab34c8bb2e1350a98fe9ccb599d
 var paddleHeight = 20;
 var paddleX = (canvas.width - paddleWidth) / 2;
 var leftPressed = false;
@@ -119,7 +123,11 @@ function draw() {
         paddlecolor = 'darkblue';
     }, 25000);
     setInterval(function(){
+<<<<<<< HEAD
         paddleWidth = 70;
+=======
+        paddleWidth = 60;
+>>>>>>> 8a3b3789a0bf5ab34c8bb2e1350a98fe9ccb599d
     }, 30000);
     setInterval(function(){
         ballcolor = 'purple';
