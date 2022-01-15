@@ -3,18 +3,22 @@ var ctx = canvas.getContext('2d');
 
 var x = canvas.width / 2;
 var y = canvas.height - 38;
-var dx = 5;
-var dy = 5;
+var dx = 4;
+var dy = 4;
 var ballRadius = 16;
 
 var score = 0;
 var ballcolor = 'firebrick';
 var paddlecolor = 'royalblue'
-var paddleWidth = 100;
+var paddleWidth = 130;
 var paddleHeight = 20;
 var paddleX = (canvas.width - paddleWidth) / 2;
 var leftPressed = false;
 var rightPressed = false;
+
+var audio1 = new Audio('./sound/hitSound.mp3');
+var audio2 = new Audio('./sound/hitSound.mp3');
+var audioEnd = new Audio('./sound/endSound.mp3');
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -85,13 +89,21 @@ function draw() {
     if (x > canvas.width - ballRadius || x < ballRadius) {
         dx = -dx;
         score++;
+        audio1.play();
     } else if (y < ballRadius) {
         dy = -dy;
         score++;
+        audio2.play();
     } else if (y > canvas.height - ballRadius - paddleHeight) {
         if (x > paddleX && x < paddleX + paddleWidth) {
             dy = -dy;
+            audio2.play();
         } else if (y > canvas.height) {
+            audio1 = 0; audio2 = 0;
+            audioEnd.play();
+            setInterval(function(){
+                audioEnd = 0;
+            }, 100);
             gameMsg.innerHTML = "GAME OVER<br>SCORE : " + score;
             gameMsg.classList.add(SHOW);
             dx = 0; dy = 0;
@@ -101,17 +113,14 @@ function draw() {
     }
 
     setInterval(function(){
-        ballRadius = 10;
+        ballRadius = 12;
     }, 15000);
-
     setInterval(function(){
         paddlecolor = 'darkblue';
     }, 25000);
-
     setInterval(function(){
-        paddleWidth = 50;
+        paddleWidth = 70;
     }, 30000);
-
     setInterval(function(){
         ballcolor = 'purple';
     }, 55000);
@@ -120,9 +129,9 @@ function draw() {
     }, 60000);
 
     if (leftPressed && paddleX > 0) {
-        paddleX -= 5;
+        paddleX -= 6;
     } else if (rightPressed && paddleX < canvas.width - paddleWidth) {
-        paddleX += 5;
+        paddleX += 6;
     }
 
     x += dx;
