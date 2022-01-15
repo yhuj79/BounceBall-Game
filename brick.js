@@ -3,14 +3,14 @@ var ctx = canvas.getContext('2d');
 
 var x = canvas.width / 2;
 var y = canvas.height - 38;
-var dx = 5;
-var dy = 5;
+var dx = 4;
+var dy = 4;
 var ballRadius = 16;
 
 var score = 0;
 var ballcolor = 'firebrick';
 var paddlecolor = 'royalblue'
-var paddleWidth = 100;
+var paddleWidth = 120;
 var paddleHeight = 20;
 var paddleX = (canvas.width - paddleWidth) / 2;
 var leftPressed = false;
@@ -109,7 +109,7 @@ function draw() {
     }, 25000);
 
     setInterval(function(){
-        paddleWidth = 50;
+        paddleWidth = 60;
     }, 30000);
 
     setInterval(function(){
