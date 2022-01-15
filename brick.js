@@ -9,7 +9,7 @@ var ballRadius = 16;
 
 var score = 0;
 var ballcolor = 'firebrick';
-var paddlecolor = 'royalblue'
+var paddlecolor = 'royalblue';
 var paddleWidth = 130;
 var paddleHeight = 20;
 var paddleX = (canvas.width - paddleWidth) / 2;
