@@ -6,7 +6,6 @@ var y = canvas.height - 38;
 var dx = 4;
 var dy = 4;
 var ballRadius = 16;
-
 var score = 0;
 var ballcolor = 'firebrick';
 var paddlecolor = 'royalblue';
@@ -30,7 +29,6 @@ const SHOW = 'show';
 const firstGame = document.querySelector('.firstGame');
 const infoGame = document.querySelector('.infoGame');
 firstGame.addEventListener('click', firstStart);
-
 function firstStart(){
     setInterval(draw, 5)
     firstGame.style.display = "none";
@@ -39,7 +37,6 @@ function firstStart(){
 
 const restartGame = document.querySelector('.restartGame');
 restartGame.addEventListener('click', reStart);
-
 function reStart() {
     document.location.reload();
 }
@@ -80,6 +77,20 @@ function drawBall() {
     ctx.closePath();
 }
 
+function drawPaddle() {
+    ctx.beginPath();
+    ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleWidth)
+    ctx.fillStyle = paddlecolor;
+    ctx.fill();
+    ctx.closePath;
+}
+
+function drawScore() {
+    ctx.font = 'bold 30px Arial'
+    ctx.fillStyle = 'black'
+    ctx.fillText('SCORE : ' + score, 8, 35);
+}
+
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
@@ -112,6 +123,7 @@ function draw() {
         }
     }
 
+    //game pattern
     setInterval(function(){
         ballRadius = 12;
     }, 15000);
@@ -136,18 +148,4 @@ function draw() {
 
     x += dx;
     y += dy;
-}
-
-function drawPaddle() {
-    ctx.beginPath();
-    ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleWidth)
-    ctx.fillStyle = paddlecolor;
-    ctx.fill();
-    ctx.closePath;
-}
-
-function drawScore() {
-    ctx.font = 'bold 30px Arial'
-    ctx.fillStyle = 'black'
-    ctx.fillText('SCORE : ' + score, 8, 35);
 }

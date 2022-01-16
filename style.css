@@ -57,12 +57,10 @@ button {
     padding: 20px 10px;
     font-size: 20px;
     font-weight: bold;
-    transition: all 0.3s;
 }
 .firstGame:hover {
     background-color: black;
     color: white;
-    transition: all 0.3s;
 }
 .restartGame {
     position: absolute;
@@ -73,12 +71,10 @@ button {
     font-size: 20px;
     font-weight: bold;
     display: none;
-    transition: all 0.3s;
 }
 .restartGame:hover {
     background-color: black;
     color: white;
-    transition: all 0.3s;
 }
 .restartGame.show {
     display: block;
