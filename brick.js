@@ -8,16 +8,17 @@ var dy = 4;
 var ballRadius = 16;
 var score = 0;
 var ballcolor = 'firebrick';
-var paddlecolor = 'royalblue';
-var paddleWidth = 130;
+var paddleColor = 'royalblue';
+var paddleWidth = 110;
 var paddleHeight = 20;
 var paddleX = (canvas.width - paddleWidth) / 2;
 var leftPressed = false;
 var rightPressed = false;
+var scoreColor = 'black';
 
-var audio1 = new Audio('./sound/hitSound.mp3');
-var audio2 = new Audio('./sound/hitSound.mp3');
-var audioEnd = new Audio('./sound/endSound.mp3');
+var hitAudio1 = new Audio('./sound/hitSound.mp3');
+var hitAudio2 = new Audio('./sound/hitSound.mp3');
+var endAudio = new Audio('./sound/endSound.mp3');
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -29,7 +30,7 @@ const SHOW = 'show';
 const firstGame = document.querySelector('.firstGame');
 const infoGame = document.querySelector('.infoGame');
 firstGame.addEventListener('click', firstStart);
-function firstStart(){
+function firstStart() {
     setInterval(draw, 5)
     firstGame.style.display = "none";
     infoGame.style.display = "none";
@@ -42,10 +43,10 @@ function reStart() {
 }
 
 function clearCanvas(context, canvas) {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  var w = canvas.width;
-  canvas.width = 1;
-  canvas.width = w;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    var w = canvas.width;
+    canvas.width = 1;
+    canvas.width = w;
 }
 
 function keyDownHandler(e) {
@@ -80,14 +81,14 @@ function drawBall() {
 function drawPaddle() {
     ctx.beginPath();
     ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleWidth)
-    ctx.fillStyle = paddlecolor;
+    ctx.fillStyle = paddleColor;
     ctx.fill();
     ctx.closePath;
 }
 
 function drawScore() {
     ctx.font = 'bold 30px Arial'
-    ctx.fillStyle = 'black'
+    ctx.fillStyle = scoreColor;
     ctx.fillText('SCORE : ' + score, 8, 35);
 }
 
@@ -100,45 +101,60 @@ function draw() {
     if (x > canvas.width - ballRadius || x < ballRadius) {
         dx = -dx;
         score++;
-        audio1.play();
+        hitAudio1.play();
     } else if (y < ballRadius) {
         dy = -dy;
         score++;
-        audio2.play();
+        hitAudio2.play();
     } else if (y > canvas.height - ballRadius - paddleHeight) {
         if (x > paddleX && x < paddleX + paddleWidth) {
             dy = -dy;
-            audio2.play();
+            hitAudio2.play();
         } else if (y > canvas.height) {
-            audio1 = 0; audio2 = 0;
-            audioEnd.play();
-            setInterval(function(){
-                audioEnd = 0;
-            }, 100);
+            hitAudio1 = 0; hitAudio2 = 0; endAudio.play();
+            setInterval(function () {
+                ballcolor = '#eee'; paddleColor = '#eee'; endAudio = 0;
+            }, Infinity);
             gameMsg.innerHTML = "GAME OVER<br>SCORE : " + score;
             gameMsg.classList.add(SHOW);
-            dx = 0; dy = 0;
+            dx = 0; dy = 0; scoreColor = '#eee';
             restartGame.innerHTML = 'RELOAD';
             restartGame.classList.add(SHOW);
         }
     }
 
     //game pattern
-    setInterval(function(){
+    setInterval(function () {
         ballRadius = 12;
     }, 15000);
-    setInterval(function(){
-        paddlecolor = 'darkblue';
+    setInterval(function () {
+        paddleColor = 'darkblue';
     }, 25000);
-    setInterval(function(){
+    setInterval(function () {
         paddleWidth = 70;
     }, 30000);
-    setInterval(function(){
+    setInterval(function () {
         ballcolor = 'purple';
     }, 55000);
-    setInterval(function(){
+    setInterval(function () {
         ballcolor = '#eee';
     }, 60000);
+    setInterval(function () {
+        ballcolor = '#eee';
+    }, 60100);
+    setInterval(function () {
+        ballcolor = 'purple';
+    }, 60200);
+    setInterval(function () {
+        ballcolor = '#eee';
+    }, 60400);
+    setInterval(function () {
+        ballcolor = '#eee';
+    }, 60500);
+    setInterval(function () {
+        ballcolor = 'purple';
+    }, 60600);
+
 
     if (leftPressed && paddleX > 0) {
         paddleX -= 6;
