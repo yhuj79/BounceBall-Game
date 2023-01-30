@@ -1,5 +1,5 @@
-var canvas = document.getElementById('gameCanvas');
-var ctx = canvas.getContext('2d');
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
 
 var x = canvas.width / 2;
 var y = canvas.height - 38;
@@ -7,161 +7,163 @@ var dx = 4;
 var dy = 4;
 var ballRadius = 16;
 var score = 0;
-var ballcolor = 'firebrick';
-var paddleColor = 'royalblue';
-var paddleWidth = 110;
+var ballcolor = "firebrick";
+var paddleColor = "royalblue";
+var paddleWidth = 150;
 var paddleHeight = 20;
 var paddleX = (canvas.width - paddleWidth) / 2;
 var leftPressed = false;
 var rightPressed = false;
-var scoreColor = 'black';
+var scoreColor = "black";
 
-var hitAudio1 = new Audio('./sound/hitSound.mp3');
-var hitAudio2 = new Audio('./sound/hitSound.mp3');
-var endAudio = new Audio('./sound/endSound.mp3');
+var hitAudio1 = new Audio("./sound/hitSound.mp3");
+var hitAudio2 = new Audio("./sound/hitSound.mp3");
+var endAudio = new Audio("./sound/endSound.mp3");
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
 
-const gameMsg = document.querySelector('.game_msg');
-const SHOW = 'show';
+const gameMsg = document.querySelector(".game_msg");
+const SHOW = "show";
 
-const firstGame = document.querySelector('.firstGame');
-const infoGame = document.querySelector('.infoGame');
-firstGame.addEventListener('click', firstStart);
+const firstGame = document.querySelector(".firstGame");
+const infoGame = document.querySelector(".infoGame");
+firstGame.addEventListener("click", firstStart);
 function firstStart() {
-    setInterval(draw, 5)
-    firstGame.style.display = "none";
-    infoGame.style.display = "none";
+  setInterval(draw, 5);
+  firstGame.style.display = "none";
+  infoGame.style.display = "none";
 }
 
-const restartGame = document.querySelector('.restartGame');
-restartGame.addEventListener('click', reStart);
+const restartGame = document.querySelector(".restartGame");
+restartGame.addEventListener("click", reStart);
 function reStart() {
-    document.location.reload();
+  document.location.reload();
 }
 
 function clearCanvas(context, canvas) {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    var w = canvas.width;
-    canvas.width = 1;
-    canvas.width = w;
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  var w = canvas.width;
+  canvas.width = 1;
+  canvas.width = w;
 }
 
 function keyDownHandler(e) {
-    if (e.keyCode == 39) {
-        rightPressed = true;
-    } else if (e.keyCode == 37) {
-        leftPressed = true;
-    }
+  if (e.keyCode == 39) {
+    rightPressed = true;
+  } else if (e.keyCode == 37) {
+    leftPressed = true;
+  }
 }
 function keyUpHandler(e) {
-    if (e.keyCode == 39) {
-        rightPressed = false;
-    } else if (e.keyCode == 37) {
-        leftPressed = false;
-    }
+  if (e.keyCode == 39) {
+    rightPressed = false;
+  } else if (e.keyCode == 37) {
+    leftPressed = false;
+  }
 }
 function mouseMoveHandler(e) {
-    var relativeX = e.clientX - canvas.offsetLeft;
-    if (relativeX > 0 && relativeX < canvas.width) {
-        paddleX = relativeX - paddleWidth / 2;
-    }
+  var relativeX = e.clientX - canvas.offsetLeft;
+  if (relativeX > 0 && relativeX < canvas.width) {
+    paddleX = relativeX - paddleWidth / 2;
+  }
 }
 
 function drawBall() {
-    ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-    ctx.fillStyle = ballcolor;
-    ctx.fill();
-    ctx.closePath();
+  ctx.beginPath();
+  ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+  ctx.fillStyle = ballcolor;
+  ctx.fill();
+  ctx.closePath();
 }
 
 function drawPaddle() {
-    ctx.beginPath();
-    ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleWidth)
-    ctx.fillStyle = paddleColor;
-    ctx.fill();
-    ctx.closePath;
+  ctx.beginPath();
+  ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleWidth);
+  ctx.fillStyle = paddleColor;
+  ctx.fill();
+  ctx.closePath;
 }
 
 function drawScore() {
-    ctx.font = 'bold 30px Arial'
-    ctx.fillStyle = scoreColor;
-    ctx.fillText('SCORE : ' + score, 8, 35);
+  ctx.font = "bold 30px Arial";
+  ctx.fillStyle = scoreColor;
+  ctx.fillText("SCORE : " + score, 8, 35);
 }
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
-    drawPaddle();
-    drawScore();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawBall();
+  drawPaddle();
+  drawScore();
 
-    if (x > canvas.width - ballRadius || x < ballRadius) {
-        dx = -dx;
-        score++;
-        hitAudio1.play();
-    } else if (y < ballRadius) {
-        dy = -dy;
-        score++;
-        hitAudio2.play();
-    } else if (y > canvas.height - ballRadius - paddleHeight) {
-        if (x > paddleX && x < paddleX + paddleWidth) {
-            dy = -dy;
-            hitAudio2.play();
-        } else if (y > canvas.height) {
-            hitAudio1 = 0; hitAudio2 = 0; endAudio.play();
-            setInterval(function () {
-                ballcolor = '#eee'; paddleColor = '#eee'; endAudio = 0;
-            }, Infinity);
-            gameMsg.innerHTML = "GAME OVER<br>SCORE : " + score;
-            gameMsg.classList.add(SHOW);
-            dx = 0; dy = 0; scoreColor = '#eee';
-            restartGame.innerHTML = 'RELOAD';
-            restartGame.classList.add(SHOW);
-        }
+  if (x > canvas.width - ballRadius || x < ballRadius) {
+    dx = -dx;
+    score++;
+    hitAudio1.play();
+  } else if (y < ballRadius) {
+    dy = -dy;
+    score++;
+    hitAudio2.play();
+  } else if (y > canvas.height - ballRadius - paddleHeight) {
+    if (x > paddleX && x < paddleX + paddleWidth) {
+      dy = -dy;
+      hitAudio2.play();
+    } else if (y > canvas.height) {
+      hitAudio1 = new Audio("./sound/null.mp3");
+      hitAudio2 = new Audio("./sound/null.mp3");
+      endAudio.play();
+      gameMsg.innerHTML = "GAME OVER<br>SCORE : " + score;
+      gameMsg.classList.add(SHOW);
+      dx = 0;
+      dy = 0;
+      scoreColor = "#eee";
+      endAudio = new Audio("./sound/null.mp3");
+      canvas.width = 0;
+      restartGame.innerHTML = "RELOAD";
+      restartGame.classList.add(SHOW);
     }
+  }
 
-    //game pattern
-    setInterval(function () {
-        ballRadius = 12;
-    }, 15000);
-    setInterval(function () {
-        paddleColor = 'darkblue';
-    }, 25000);
-    setInterval(function () {
-        paddleWidth = 70;
-    }, 30000);
-    setInterval(function () {
-        ballcolor = 'purple';
-    }, 55000);
-    setInterval(function () {
-        ballcolor = '#eee';
-    }, 60000);
-    setInterval(function () {
-        ballcolor = '#eee';
-    }, 60100);
-    setInterval(function () {
-        ballcolor = 'purple';
-    }, 60200);
-    setInterval(function () {
-        ballcolor = '#eee';
-    }, 60400);
-    setInterval(function () {
-        ballcolor = '#eee';
-    }, 60500);
-    setInterval(function () {
-        ballcolor = 'purple';
-    }, 60600);
+  //game pattern
+  setInterval(function () {
+    ballRadius = 12;
+  }, 15000);
+  setInterval(function () {
+    paddleColor = "darkblue";
+  }, 25000);
+  setInterval(function () {
+    paddleWidth = 75;
+  }, 30000);
+  setInterval(function () {
+    ballcolor = "purple";
+  }, 55000);
+  setInterval(function () {
+    ballcolor = "#eee";
+  }, 60000);
+  setInterval(function () {
+    ballcolor = "#eee";
+  }, 60100);
+  setInterval(function () {
+    ballcolor = "purple";
+  }, 60200);
+  setInterval(function () {
+    ballcolor = "#eee";
+  }, 60400);
+  setInterval(function () {
+    ballcolor = "#eee";
+  }, 60500);
+  setInterval(function () {
+    ballcolor = "purple";
+  }, 60600);
 
+  if (leftPressed && paddleX > 0) {
+    paddleX -= 6;
+  } else if (rightPressed && paddleX < canvas.width - paddleWidth) {
+    paddleX += 6;
+  }
 
-    if (leftPressed && paddleX > 0) {
-        paddleX -= 6;
-    } else if (rightPressed && paddleX < canvas.width - paddleWidth) {
-        paddleX += 6;
-    }
-
-    x += dx;
-    y += dy;
+  x += dx;
+  y += dy;
 }
