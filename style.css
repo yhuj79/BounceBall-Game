@@ -16,7 +16,7 @@ button {
 #title {
   text-align: center;
   color: white;
-  margin: 30px 0;
+  margin: 50px 0;
   font-size: 50px;
 }
 
@@ -24,6 +24,7 @@ button {
   background: #eee;
   margin: 0 auto;
   display: block;
+  border-radius: 10px;
 }
 
 .infoGame {
@@ -39,6 +40,7 @@ button {
   font-size: 30px;
   font-weight: bold;
   color: white;
+  border-radius: 10px;
 }
 
 .size_warn {
@@ -83,6 +85,7 @@ button {
   padding: 20px 10px;
   font-size: 20px;
   font-weight: bold;
+  border-radius: 10px;
 }
 
 .firstGame:hover {
@@ -99,6 +102,7 @@ button {
   font-size: 20px;
   font-weight: bold;
   display: none;
+  border-radius: 10px;
 }
 
 .restartGame:hover {
