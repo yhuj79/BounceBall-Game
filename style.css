@@ -1,0 +1,145 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: black;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+#title {
+  text-align: center;
+  color: white;
+  margin: 50px 0;
+  font-size: 50px;
+}
+
+#gameCanvas {
+  background: #eee;
+  margin: 0 auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.infoGame {
+  position: absolute;
+  width: 400px;
+  height: 220px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  padding: 130px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+}
+
+.size_warn {
+  display: none;
+  position: absolute;
+  width: 400px;
+  height: 220px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  padding: 130px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+
+.game_msg {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  padding: 130px 130px 200px;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  display: none;
+}
+
+.game_msg.show {
+  display: block;
+}
+
+.firstGame {
+  position: absolute;
+  left: 50%;
+  top: 68%;
+  transform: translate(-50%, -50%);
+  padding: 20px 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.firstGame:hover {
+  background-color: black;
+  color: white;
+}
+
+.restartGame {
+  position: absolute;
+  left: 50%;
+  top: 68%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  display: none;
+  border-radius: 10px;
+}
+
+.restartGame:hover {
+  background-color: black;
+  color: white;
+}
+
+.restartGame.show {
+  display: block;
+}
+
+#footer {
+  text-align: center;
+  color: white;
+  margin: 30px 0;
+}
+
+@media (max-width: 800px) {
+  .infoGame {
+    display: none;
+  }
+
+  #gameCanvas {
+    display: none;
+  }
+  .size_warn {
+    display: inline;
+    padding: 0;
+    font-size: 25px;
+  }
+  .firstGame {
+    display: none;
+  }
+  .restartGame {
+    display: inline;
+  }
+  #footer {
+    display: none;
+  }
+}

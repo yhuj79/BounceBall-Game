@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:description" content="Are you ready to play?">
+    <meta property="og:image" content="./image/ogimage.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-config" content="./favicon/browserconfig.xml">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="./style.css">
+
+    <title>BounceBall</title>
+</head>
+
+<body>
+    <h1 id="title">Bounce Ball Game</h1>
+    <div class="infoGame">
+        공이 떨어지지 않게 해야 합니다.<br>
+        가능한 벽에 많이 맞추세요!<br>
+        시간이 지남에 따라<br>새로운 패턴이 등장합니다.<br>
+    </div>
+    <div class="size_warn">
+        <p>800 * 600 이상</p>
+        <p>큰 화면에서 실행해 주세요!</p>
+    </div>
+    <div class="game_msg"></div>
+    <button type="button" class="firstGame">START</button>
+    <button type="button" class="restartGame">RELOAD</button>
+    <canvas id="gameCanvas" width="800px" height="600px"></canvas>
+    <p id="footer">Copyright © yhuj79. Built with Javascript</p>
+    <script src="./brick.js"></script>
+</body>
+
+</html>
